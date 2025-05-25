@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - About</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="hero-banner">
+    <div class="banner-content">
+      <h1>About BidBurst</h1>
+      <p>Your premier auction platform for rare and unique items</p>
+    </div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="about-section">
+      <div class="about-card">
+        <h2>Our Story</h2>
+        <p>Founded in 2023, BidBurst brings the excitement of live auctions to your fingertips. We specialize in rare collectibles, vintage items, and unique finds.</p>
+        <div class="stats">
+          <div class="stat-item">
+            <span class="stat-number">5,000+</span>
+            <span class="stat-label">Successful Auctions</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">98%</span>
+            <span class="stat-label">Positive Feedback</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="team-section">
+        <h2>Meet the Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="images/miguel.jpg" alt="CEO">
+            <h3>Alex Johnson</h3>
+            <p>Founder & CEO</p>
+          </div>
+          <div class="team-member">
+            <img src="images/tequila.jpg" alt="CTO">
+            <h3>Sarah Chen</h3>
+            <p>Chief Technology Officer</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Theme and menu functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌑' : '🌞';
+    });
+  </script>
+</body>
+</html>

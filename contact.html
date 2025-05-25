@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - Contact</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="hero-banner">
+    <div class="banner-content">
+      <h1>Contact Us</h1>
+      <p>We're here to help with any questions</p>
+    </div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-section">
+      <div class="contact-methods">
+        <div class="contact-card">
+          <h3>✉️ Email</h3>
+          <p>support@bidburst.com</p>
+        </div>
+        <div class="contact-card">
+          <h3>📞 Phone</h3>
+          <p>(555) 123-4567</p>
+        </div>
+      </div>
+
+      <form class="contact-form">
+        <h2>Send Us a Message</h2>
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Form submission
+    document.querySelector('.contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will respond within 24 hours.');
+      this.reset();
+    });
+
+    // Theme and menu functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌑' : '🌞';
+    });
+  </script>
+</body>
+</html>

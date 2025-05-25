@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - Profile</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="hero-banner">
+    <div class="banner-content">
+      <h1>Your Profile</h1>
+      <p>Manage your account and bidding activity</p>
+    </div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile-section">
+      <div class="profile-header">
+        <img src="images/homelander.jpg" class="profile-avatar">
+        <h2>Welcome back, <span class="username">PEAKLANDER</span></h2>
+      </div>
+
+      <div class="profile-stats">
+        <div class="stat-card">
+          <h3>Active Bids</h3>
+          <p class="stat-value">5</p>
+        </div>
+        <div class="stat-card">
+          <h3>Won Auctions</h3>
+          <p class="stat-value">12</p>
+        </div>
+      </div>
+
+      <div class="bidding-activity">
+        <h3>Your Bidding Activity</h3>
+        <div class="activity-timeline">
+          <div class="activity-item">
+            <span class="activity-time">Today 14:30</span>
+            <p>You bid $1,200 on Vintage Camera</p>
+          </div>
+          <div class="activity-item">
+            <span class="activity-time">Yesterday 09:15</span>
+            <p>You won Rare Comic Book for $850</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Theme and menu functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌑' : '🌞';
+      
+      // Simulate loading user data
+      setTimeout(() => {
+        document.querySelector('.username').textContent = 'PEAKLANDER';
+      }, 500);
+    });
+  </script>
+</body>
+</html>

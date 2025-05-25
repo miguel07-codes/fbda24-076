@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - Feedback</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="hero-banner">
+    <div class="banner-content">
+      <h1>Share Your Feedback</h1>
+      <p>We value your opinion to improve our platform</p>
+    </div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="feedback.html" class="active">Feedback</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="feedback-section">
+      <div class="feedback-intro">
+        <h2>How are we doing?</h2>
+        <p>Please take a moment to share your experience with BidBurst. Your feedback helps us improve the platform for everyone.</p>
+      </div>
+
+      <form class="feedback-form">
+        <div class="rating-section">
+          <h3>Overall Satisfaction</h3>
+          <div class="star-rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5">★</label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4">★</label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3">★</label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2">★</label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1">★</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-type">Feedback Type</label>
+          <select id="feedback-type">
+            <option value="general">General Feedback</option>
+            <option value="suggestion">Suggestion</option>
+            <option value="issue">Report an Issue</option>
+            <option value="praise">Compliment</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="feedback-message">Your Feedback</label>
+          <textarea id="feedback-message" rows="5" placeholder="Tell us about your experience..."></textarea>
+        </div>
+
+        <button type="submit" class="btn">Submit Feedback</button>
+      </form>
+
+      <div class="thank-you-message" style="display:none;">
+        <h3>Thank You!</h3>
+        <p>We appreciate your feedback and will use it to improve BidBurst.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Star rating interaction
+    document.querySelectorAll('.star-rating input').forEach(star => {
+      star.addEventListener('change', function() {
+        const rating = this.value;
+        const stars = document.querySelectorAll('.star-rating label');
+        stars.forEach((s, i) => {
+          s.style.color = i < rating ? '#ffc107' : '#ccc';
+        });
+      });
+    });
+
+    // Form submission
+    document.querySelector('.feedback-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.querySelector('.thank-you-message').style.display = 'block';
+      
+      // In a real app, you would send the data to your server here
+      const formData = {
+        rating: document.querySelector('input[name="rating"]:checked')?.value || 0,
+        type: document.getElementById('feedback-type').value,
+        message: document.getElementById('feedback-message').value
+      };
+      console.log('Feedback submitted:', formData);
+    });
+
+    // Theme and menu functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌑' : '🌞';
+    });
+  </script>
+</body>
+</html>

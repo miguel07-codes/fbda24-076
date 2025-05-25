@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - Help</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="hero-banner">
+    <div class="banner-content">
+      <h1>Help Center</h1>
+      <p>Find answers to common questions</p>
+    </div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="help.html" class="active">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="help-section">
+      <div class="search-help">
+        <input type="text" placeholder="Search help articles...">
+        <button class="search-btn">Search</button>
+      </div>
+
+      <div class="faq-accordion">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion-item">
+          <button class="accordion-btn">How do I place a bid? <span>+</span></button>
+          <div class="accordion-content">
+            <p>To place a bid, navigate to the auction page of the item you're interested in, enter your bid amount in the bidding box, and click "Place Bid." You'll need to confirm your bid before it's submitted.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-btn">What payment methods do you accept? <span>+</span></button>
+          <div class="accordion-content">
+            <p>We accept all major credit cards, PayPal, and bank transfers. Payment is due within 48 hours of winning an auction.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="help-categories">
+        <h3>Help Categories</h3>
+        <div class="category-grid">
+          <a href="#" class="category-card">
+            <h4>Getting Started</h4>
+            <p>New user guide and account setup</p>
+          </a>
+          <a href="#" class="category-card">
+            <h4>Bidding Help</h4>
+            <p>How to bid and bidding strategies</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Accordion functionality
+    document.querySelectorAll('.accordion-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const isOpen = button.classList.contains('active');
+        
+        // Close all others
+        document.querySelectorAll('.accordion-btn').forEach(btn => {
+          btn.classList.remove('active');
+          btn.querySelector('span').textContent = '+';
+          btn.nextElementSibling.style.maxHeight = null;
+        });
+        
+        // Open this one if it was closed
+        if (!isOpen) {
+          button.classList.add('active');
+          button.querySelector('span').textContent = '-';
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Theme and menu functionality
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌑' : '🌞';
+      
+      // Open first FAQ by default
+      document.querySelector('.accordion-btn').click();
+    });
+  </script>
+</body>
+</html>

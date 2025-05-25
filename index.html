@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - Home</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Hero Carousel -->
+  <section class="hero-carousel">
+    <div class="carousel-slide active" style="background-image: url('https://source.unsplash.com/random/1200x600/?auction,art')">
+      <div class="slide-content">
+        <h1>Trending Auctions</h1>
+        <p>Limited edition collectibles ending soon!</p>
+        <a href="auctions.html" class="btn">View Auctions</a>
+      </div>
+    </div>
+    <div class="carousel-slide" style="background-image: url('https://source.unsplash.com/random/1200x600/?collectibles,rare')">
+      <div class="slide-content">
+        <h1>New This Week</h1>
+        <p>Fresh items added daily</p>
+        <a href="auctions.html" class="btn">Explore Now</a>
+      </div>
+    </div>
+    <button class="carousel-prev">❮</button>
+    <button class="carousel-next">❯</button>
+    <div class="carousel-dots"></div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="auctions.html">Auctions</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container">
+      <h2>Featured Auctions</h2>
+      <div class="auction-grid">
+        <!-- Auction Item 1 (Will end soon) -->
+        <div class="auction-item">
+          <div class="live-badge">🔴 ENDING SOON</div>
+          <img src="https://source.unsplash.com/random/400x300/?watch,vintage" alt="Vintage Rolex">
+          <div class="auction-info">
+            <h3>Vintage Rolex Submariner</h3>
+            <p class="current-bid">Current Bid: $8,250</p>
+            <div class="countdown" data-end="2023-06-15T14:00:00">
+              Ends in: <span class="timer">00h 15m 30s</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+
+        <!-- Auction Item 2 -->
+        <div class="auction-item">
+          <img src="https://source.unsplash.com/random/400x300/?painting,art" alt="Abstract Painting">
+          <div class="auction-info">
+            <h3>Abstract Oil Painting</h3>
+            <p class="current-bid">Current Bid: $1,200</p>
+            <div class="countdown" data-end="2023-06-16T18:30:00">
+              Ends in: <span class="timer">1d 4h 45m</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Carousel functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = [];
+    
+    // Create dots
+    const dotsContainer = document.querySelector('.carousel-dots');
+    slides.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+      dots.push(dot);
+    });
+    
+    function goToSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      dots[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dots[currentSlide].classList.add('active');
+    }
+    
+    document.querySelector('.carousel-next').addEventListener('click', () => goToSlide(currentSlide + 1));
+    document.querySelector('.carousel-prev').addEventListener('click', () => goToSlide(currentSlide - 1));
+    
+    // Auto-rotate carousel
+    setInterval(() => goToSlide(currentSlide + 1), 5000);
+    
+    // Theme toggle
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+    
+    // Initialize theme
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.querySelector('.theme-toggle').textContent = savedTheme === 'light' ? '🌑' : '🌞';
+      
+      // Initialize countdown timers
+      updateCountdowns();
+      setInterval(updateCountdowns, 1000);
+    });
+    
+  // Set future end times for featured auctions
+  document.addEventListener('DOMContentLoaded', function() {
+    // First auction ends in 15 minutes
+    document.querySelector('.auction-item .countdown').dataset.end = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+    
+    // Second auction ends in 1 day
+    document.querySelectorAll('.auction-item .countdown')[1].dataset.end = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
+    
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+  });
+
+  // Same updateCountdowns function as in auctions.html
+  function updateCountdowns() {
+    document.querySelectorAll('.countdown').forEach(timer => {
+      const endDate = new Date(timer.dataset.end).getTime();
+      const now = new Date().getTime();
+      const distance = endDate - now;
+      const bidButton = timer.closest('.auction-item').querySelector('.bid-btn');
+      const liveBadge = timer.closest('.auction-item').querySelector('.live-badge');
+      
+      if (distance < 0) {
+        timer.innerHTML = "Auction Ended";
+        if (bidButton) {
+          bidButton.disabled = true;
+          bidButton.textContent = "Bidding Closed";
+        }
+        if (liveBadge) {
+          liveBadge.textContent = "🕒 ENDED";
+          liveBadge.style.backgroundColor = "#95a5a6";
+        }
+        return;
+      }
+      
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      timer.querySelector('.timer').textContent = `${hours}h ${minutes}m ${seconds}s`;
+      
+      if (distance < 300000) { // Less than 5 minutes
+        timer.classList.add('ending-soon');
+        if (liveBadge) {
+          liveBadge.textContent = "🔴 ENDING SOON";
+          liveBadge.style.backgroundColor = "#e74c3c";
+        }
+      } else {
+        timer.classList.remove('ending-soon');
+      }
+    });
+    }
+  </script>
+</body>
+</html>

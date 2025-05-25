@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BidBurst - Auctions</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <section class="hero-banner">
+    <div class="banner-content">
+      <h1>Live Auctions</h1>
+      <p>Place your bid on these exciting items</p>
+    </div>
+  </section>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav-links" class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="auctions.html" class="active">Auctions</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="feedback.html">Feedback</a></li>
+        <li><a href="help.html">Help</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container">
+      <h2>Current Auctions</h2>
+      <div class="auction-grid">
+        <!-- Auction 1 (Will end soon) -->
+        <div class="auction-item">
+          <div class="live-badge">🔴 ENDING SOON</div>
+          <img src="https://source.unsplash.com/random/400x300/?watch,luxury" alt="Luxury Watch">
+          <div class="auction-info">
+            <h3>Rolex Daytona 116500</h3>
+            <p class="current-bid">Current Bid: $12,450</p>
+            <div class="countdown" data-end="2023-06-15T14:00:00">
+              Ends in: <span class="timer">00h 15m 30s</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+
+        <!-- Auction 2 -->
+        <div class="auction-item">
+          <img src="https://source.unsplash.com/random/400x300/?guitar,vintage" alt="Vintage Guitar">
+          <div class="auction-info">
+            <h3>1965 Fender Stratocaster</h3>
+            <p class="current-bid">Current Bid: $8,750</p>
+            <div class="countdown" data-end="2023-06-15T16:30:00">
+              Ends in: <span class="timer">2h 45m 00s</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+
+        <!-- Auction 3 -->
+        <div class="auction-item">
+          <img src="https://source.unsplash.com/random/400x300/?painting,abstract" alt="Abstract Art">
+          <div class="auction-info">
+            <h3>Abstract Expressionist Painting</h3>
+            <p class="current-bid">Current Bid: $3,200</p>
+            <div class="countdown" data-end="2023-06-15T20:00:00">
+              Ends in: <span class="timer">6h 15m 00s</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+
+        <!-- Auction 4 -->
+        <div class="auction-item">
+          <img src="https://source.unsplash.com/random/400x300/?sneakers,rare" alt="Rare Sneakers">
+          <div class="auction-info">
+            <h3>Nike Air Jordan 1 Retro</h3>
+            <p class="current-bid">Current Bid: $1,850</p>
+            <div class="countdown" data-end="2023-06-16T09:00:00">
+              Ends in: <span class="timer">19h 15m 00s</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+
+        <!-- Auction 5 -->
+        <div class="auction-item">
+          <img src="https://source.unsplash.com/random/400x300/?whiskey,rare" alt="Rare Whiskey">
+          <div class="auction-info">
+            <h3>Macallan 25 Year Old Scotch</h3>
+            <p class="current-bid">Current Bid: $2,500</p>
+            <div class="countdown" data-end="2023-06-16T12:00:00">
+              Ends in: <span class="timer">22h 15m 00s</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+
+        <!-- Auction 6 -->
+        <div class="auction-item">
+          <img src="https://source.unsplash.com/random/400x300/?comic,book" alt="Rare Comic">
+          <div class="auction-info">
+            <h3>Amazing Fantasy #15 (Spider-Man)</h3>
+            <p class="current-bid">Current Bid: $15,000</p>
+            <div class="countdown" data-end="2023-06-17T14:00:00">
+              Ends in: <span class="timer">2d 0h 15m</span>
+            </div>
+            <button class="bid-btn">Place Bid</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 BidBurst. Powered by Piccolo Energy™. All rights reserved.</p>
+  </footer>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+
+  <script>
+    // Theme toggle
+    function toggleTheme() {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+      document.querySelector('.theme-toggle').textContent = newTheme === 'light' ? '🌑' : '🌞';
+    }
+    
+    // Mobile menu toggle
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('active');
+    }
+  // Set future end times (adjust these dates as needed for your presentation)
+  const auctionEndTimes = [
+    "2023-06-15T14:00:00",  // Ends in 15 minutes
+    "2023-06-15T16:30:00",  // Ends in 2 hours 45 minutes
+    "2023-06-15T20:00:00",  // Ends in 6 hours
+    "2023-06-16T09:00:00",  // Ends tomorrow morning
+    "2023-06-16T12:00:00",  // Ends tomorrow noon
+    "2023-06-17T14:00:00"   // Ends in 2 days
+  ];
+
+  // Initialize timers with future dates
+  document.addEventListener('DOMContentLoaded', function() {
+    const countdowns = document.querySelectorAll('.countdown');
+    countdowns.forEach((timer, index) => {
+      timer.dataset.end = auctionEndTimes[index];
+    });
+    
+    updateCountdowns();
+    setInterval(updateCountdowns, 1000);
+  });
+
+  // Updated countdown function
+  function updateCountdowns() {
+    document.querySelectorAll('.countdown').forEach(timer => {
+      const endDate = new Date(timer.dataset.end).getTime();
+      const now = new Date().getTime();
+      const distance = endDate - now;
+      const bidButton = timer.closest('.auction-item').querySelector('.bid-btn');
+      const liveBadge = timer.closest('.auction-item').querySelector('.live-badge');
+      
+      if (distance < 0) {
+        timer.innerHTML = "Auction Ended";
+        if (bidButton) {
+          bidButton.disabled = true;
+          bidButton.textContent = "Bidding Closed";
+        }
+        if (liveBadge) {
+          liveBadge.textContent = "🕒 ENDED";
+          liveBadge.style.backgroundColor = "#95a5a6";
+        }
+        return;
+      }
+      
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      let timeString = '';
+      if (days > 0) timeString += `${days}d `;
+      if (hours > 0 || days > 0) timeString += `${hours}h `;
+      timeString += `${minutes}m ${seconds}s`;
+      
+      timer.querySelector('.timer').textContent = timeString;
+      
+      if (distance < 300000) { // Less than 5 minutes
+        timer.classList.add('ending-soon');
+        if (liveBadge) {
+          liveBadge.textContent = "🔴 ENDING SOON";
+          liveBadge.style.backgroundColor = "#e74c3c";
+        }
+      } else {
+        timer.classList.remove('ending-soon');
+      }
+    });
+  } 
+    // Confetti effect for winning bids
+    function showConfetti() {
+      const jsConfetti = new JSConfetti();
+      jsConfetti.addConfetti({
+        emojis: ['💰', '🏆', '🎉', '💎'],
+        emojiSize: 30,
+        confettiNumber: 50,
+      });
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+</body>
+</html>
+         
