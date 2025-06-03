@@ -1,7 +1,6 @@
 /* ===== Base Styles & Theme Variables ===== */
-
-:root {
   /* Dark Theme Defaults */
+:root {
   --bg-color: #1a1a1a;
   --text-color: #f0f0f0;
   --primary-color: #8e44ad;
